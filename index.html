@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嘉年華抽獎遊戲｜QR 首頁</title>
+<style>
+body{
+    margin:0; padding:0; font-family:'Noto Sans TC',sans-serif;
+    background: linear-gradient(180deg,#05010a,#140b2b,#240f45);
+    color:white; text-align:center;
+}
+.center{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+}
+h1{margin-bottom:20px;}
+button{
+    margin-top:20px; padding:12px 28px; font-size:20px; font-weight:bold;
+    border:none; border-radius:12px; cursor:pointer; background:#ffcf33; color:#320e00;
+}
+button:hover{background:#ffe27a;}
+#qrcode{margin-top:20px;}
+</style>
+</head>
+<body>
+
+<div class="center">
+    <h1>🎪 神秘嘉年華抽獎遊戲</h1>
+    <p>掃描 QR code 直接進入遊戲</p>
+    <div id="qrcode"></div>
+    <button onclick="startGame()">直接開啟遊戲 ▶</button>
+</div>
+
+<!-- QR code library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// 可以帶房間參數，例如 ?room=abc123
+const roomId = "abc123"; 
+const gameUrl = `https://example.com/index.html?room=${roomId}`;
+
+// 生成 QR code
+new QRCode(document.getElementById("qrcode"), {
+    text: gameUrl,
+    width: 200,
+    height: 200
+});
+
+// 按鈕直接打開遊戲
+function startGame(){
+    window.location.href = gameUrl;
+}
+</script>
+
+</body>
+</html>

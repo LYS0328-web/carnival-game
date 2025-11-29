@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>闖關地圖</title>
+<style>
+body{
+    margin:0; background:#120e2b; font-family:"Noto Sans TC"; color:white;
+    text-align:center;
+}
+h1{ margin-top:25px; }
+#map{
+    position:relative; width:100%; height:600px; margin-top:20px;
+}
+.stage{
+    width:90px; height:90px; border-radius:18px;
+    background:#ffcf33; color:#320e00;
+    font-size:28px; font-weight:bold;
+    display:flex; justify-content:center; align-items:center;
+    position:absolute; cursor:pointer; box-shadow:0 6px 12px rgba(0,0,0,.4);
+}
+.stage.locked{
+    background:#555; color:#bbb; cursor:not-allowed;
+}
+#player{
+    position:absolute; font-size:45px; transition:.4s;
+}
+</style>
+</head>
+<body>
+
+<h1>冒險地圖</h1>
+
+<div id="map">
+    <div class="stage" id="s1" style="top:60px; left:40px;" onclick="go(1)">1</div>
+    <div class="stage" id="s2" style="top:180px; left:160px;" onclick="go(2)">2</div>
+    <div class="stage" id="s3" style="top:310px; left:50px;" onclick="go(3)">3</div>
+    <div class="stage" id="s4" style="top:430px; left:160px;" onclick="go(4)">4</div>
+    <div class="stage" id="s5" style="top:550px; left:60px;" onclick="go(5)">5</div>
+    <div id="player"></div>
+</div>
+
+<script>
+// 顯示角色
+const playerEl = document.getElementById("player");
+playerEl.textContent = localStorage.getItem("player") || "😀";
+
+// 鎖定邏輯：每一關只有前一關完成才解鎖
+for(let i=1;i<=5;i++){
+    const stageEl = document.getElementById("s"+i);
+    if(i===1) continue; // 第一關永遠解鎖
+    const prevCleared = localStorage.getItem("stage"+(i-1)) === "cleared";
+    if(!prevCleared){
+        stageEl.classList.add("locked");
+    }
+}
+
+// 找最後一個解鎖的關卡
+let latest = 1;
+for(let i=1;i<=5;i++){
+    const stageEl = document.getElementById("s"+i);
+    if(!stageEl.classList.contains("locked")) latest = i;
+}
+moveTo(latest);
+
+// 角色移動
+function moveTo(stage){
+    const el = document.getElementById("s"+stage);
+    const rect = el.getBoundingClientRect();
+    const p = playerEl;
+    p.style.top = (rect.top - 10 + window.scrollY) + "px";
+    p.style.left = (rect.left + 30 + window.scrollX) + "px";
+}
+
+// 點擊關卡
+function go(n){
+    const stageEl = document.getElementById("s"+n);
+    if(stageEl.classList.contains("locked")){
+        alert("請先完成前一關！");
+        return;
+    }
+    location.href = "stage"+n+".html";
+}
+</script>
+</body>
+</html>

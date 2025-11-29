@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第四關｜放回抽球</title>
+<style>
+body{background:#120a2b;color:white;font-family:"Noto Sans TC";text-align:center;padding:20px;}
+h1{margin-bottom:20px;}
+#box{width:200px;height:200px;margin:0 auto;background:#5544aa;border-radius:20px;display:flex;justify-content:center;align-items:flex-end;position:relative;overflow:hidden;}
+.ball{width:40px;height:40px;border-radius:50%;position:absolute;top:-50px;left:50%;transform:translateX(-50%);font-size:30px;cursor:pointer;transition: all 0.8s ease;}
+.option{background:#ffcf33;padding:12px;margin:10px auto;width:80%;max-width:300px;border-radius:10px;color:#320e00;font-weight:bold;cursor:pointer;}
+.option:hover{background:#ffe27a;}
+.btn{margin-top:20px;padding:10px 20px;font-size:18px;background:#999;border:none;border-radius:10px;color:#000;}
+</style>
+</head>
+<body>
+
+<h1>第四關：抽球（放回，條件事件）</h1>
+<div id="box">🎁</div>
+
+<h2>題目：</h2>
+<p>袋中有 <b>3 藍、2 綠、5 黃</b>，每次抽出後放回。<br>
+若第一次抽到黃球，第二次抽到藍球的機率？</p>
+
+<div class="option" onclick="check(1)">(1) 3/10</div>
+<div class="option" onclick="check(2)">(2) 1/10</div>
+<div class="option" onclick="check(3)">(3) 3/40</div>
+
+<button class="btn" onclick="location.href='map.html'">返回地圖</button>
+
+<script>
+const colors = ['🔵','🔵','🔵','🟢','🟢','🟡','🟡','🟡','🟡','🟡'];
+const box = document.getElementById("box");
+colors.forEach((c,i)=>{
+    const b = document.createElement('div');
+    b.classList.add('ball');
+    b.textContent = c;
+    b.style.left = (50 + i*15) + 'px';
+    box.appendChild(b);
+    setTimeout(()=> b.style.top='140px', 300*i);
+});
+
+function check(n){
+  if(n===1){
+    alert('答對！前往第五關！');
+    localStorage.setItem("stage4","cleared");
+    location.href='stage5.html';
+  }else{
+    alert("不對，再想想！");
+  }
+}
+</script>
+
+</body>
+</html>

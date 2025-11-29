@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一關｜抽球不放回</title>
+<style>
+body{
+    background:#1b0f33; color:white; font-family:"Noto Sans TC"; text-align:center; padding:20px;
+}
+h1{ margin-bottom:20px; }
+#box{
+    width:200px; height:200px; margin:0 auto; background:#6633aa; border-radius:20px;
+    display:flex; justify-content:center; align-items:flex-end; position:relative; overflow:hidden;
+}
+.ball{
+    width:40px; height:40px; border-radius:50%; margin:5px;
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    font-size:30px; cursor:pointer;
+    transition: all 0.8s ease;
+}
+.option{
+    background:#ffcf33; padding:12px; margin:10px auto; width:80%; max-width:300px;
+    border-radius:10px; color:#320e00; font-weight:bold; cursor:pointer;
+}
+.option:hover{ background:#ffe27a; }
+.btn{margin-top:20px;padding:10px 20px;font-size:18px;background:#999;border:none;border-radius:10px;color:#000;}
+</style>
+</head>
+<body>
+
+<h1>第一關：抽球（不放回）</h1>
+
+<div id="box">🎁</div>
+
+<h2>題目：</h2>
+<p>袋中有 <b>3 顆白球、2 顆黃球、1 顆藍球</b>。<br>
+抽兩球（不放回），求「第一球為白、第二球為黃」的機率？</p>
+
+<div class="option" onclick="check(1)">(1) 1/5</div>
+<div class="option" onclick="check(2)">(2) 3/15</div>
+<div class="option" onclick="check(3)">(3) 3/30</div>
+
+<button class="btn" onclick="location.href='map.html'">返回地圖</button>
+
+<script>
+// 建立球動畫
+const colors = ['⚪','⚪','⚪','🟡','🟡','🔵'];
+const box = document.getElementById("box");
+colors.forEach((c,i)=>{
+    const b = document.createElement('div');
+    b.classList.add('ball');
+    b.textContent = c;
+    b.style.top = '-50px';
+    b.style.left = (50 + i*20) + 'px';
+    box.appendChild(b);
+
+    // 動畫延遲
+    setTimeout(()=>{
+        b.style.top = '140px';
+    }, 300*i);
+});
+
+function check(n){
+    if(n===2){
+        alert('答對了！前往第二關！');
+        localStorage.setItem("stage1","cleared");
+        location.href='stage2.html';
+    }else{
+        alert('答錯了，再試一次！');
+    }
+}
+</script>
+
+</body>
+</html>
