@@ -1,39 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>嘉年華抽獎遊戲</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>嘉年華抽獎遊戲｜首頁</title>
 <style>
-body{
-    margin:0; padding:0; font-family:'Noto Sans TC',sans-serif;
-    background: linear-gradient(180deg,#05010a,#140b2b,#240f45);
-    color:white; text-align:center;
-}
-.center{
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-}
-h1{margin-bottom:20px;}
-button{
-    margin-top:20px; padding:12px 28px; font-size:20px; font-weight:bold;
-    border:none; border-radius:12px; cursor:pointer; background:#ffcf33; color:#320e00;
-}
-button:hover{background:#ffe27a;}
-#qrcode{
-    margin-top:20px;
-    display: flex;
-    justify-content: center;
-}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Noto Sans TC',sans-serif}
+  body{
+    background:linear-gradient(180deg,#05010a,#140b2b,#240f45);
+    height:100vh;
+    overflow:hidden;
+    color:#fff;
+  }
+  .center{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    text-align:center;
+  }
+  .fade-text{
+    font-size:28px;
+    opacity:0;
+    animation:fadeIn 1.8s ease forwards;
+  }
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .t2{animation-delay:1.6s}
+  .t3{animation-delay:3.2s}
+  .t4{animation-delay:4.8s}
+
+  .start-btn{
+    margin-top:40px;
+    padding:12px 28px;
+    background:#ffcf33;
+    color:#320e00;
+    border:none;
+    border-radius:12px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    opacity:0;
+    animation:fadeIn 1.8s ease forwards;
+    animation-delay:6.5s;
+  }
+  .start-btn:hover{
+    background:#ffe27a;
+  }
 </style>
 </head>
 <body>
 
 <div class="center">
-    <h1>🎪 神秘嘉年華抽獎遊戲</h1>
-    <button onclick="startGame('character')">前往角色頁面 ▶</button>
-</div>
+  <div class="fade-text t1">✨ 歡迎來到一年一度的 ——</div>
+  <div class="fade-text t2">🎪 『神秘嘉年華』</div>
+  <div class="fade-text t3">🎁 抽獎遊戲，即將開始 ...</div>
+  <div class="fade-text t4">請準備好你的幸運值！</div>
 
-</script>
+  <button class="start-btn" onclick="location.href='character.html'">開始遊戲 ▶</button>
+</div>
 
 </body>
 </html>
