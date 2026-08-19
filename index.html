@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>嘉年華抽獎遊戲｜QR 首頁</title>
+<title>嘉年華抽獎遊戲</title>
 <style>
 body{
     margin:0; padding:0; font-family:'Noto Sans TC',sans-serif;
@@ -30,31 +30,9 @@ button:hover{background:#ffe27a;}
 
 <div class="center">
     <h1>🎪 神秘嘉年華抽獎遊戲</h1>
-    <p>掃描 QR code 直接進入遊戲</p>
-    <div id="qrcode"></div>
-    <button onclick="startGame()">直接開啟遊戲 ▶</button>
+    <button onclick="startGame('character.html')">前往角色頁面 ▶</button>
 </div>
 
-<!-- QR code library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-// 可以帶房間參數，例如 ?room=abc123
-const roomId = "abc123"; 
-
-// 設定要跳轉與 QR code 連結的目標頁面 (character.html)
-const targetUrl = `character.html?room=${roomId}`;
-
-// 生成 QR code
-new QRCode(document.getElementById("qrcode"), {
-    text: targetUrl,
-    width: 200,
-    height: 200
-});
-
-// 按鈕點擊後，直接前往 character.html 頁面
-function startGame(){
-    window.location.href = targetUrl;
-}
 </script>
 
 </body>
